@@ -20,6 +20,10 @@
 				font-family: "Poppins", sans-serif;
 			    font-style: normal;
 			}
+			table, td, th {
+				border: solid 2px black;
+				border-collapse: collapse;
+			}
 		</style>
 	</head>
 	<body>
@@ -27,7 +31,7 @@
 		
 		<h2>
 			Evaluation details of 
-			<c:out value="${session.name }"/>
+			<c:out value="${sessionScope.nom }"/>
 		</h2>
 		<table>
 			<thead>
@@ -40,28 +44,32 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="eva" items="">
+				<c:forEach var="e" items="${eva }">
+					<c:set var="id" value="${e.m_Article.id }"/>
+					<c:set var="name" value="${e.m_Article.nom }"/>
 					<tr>
-						<c:out value="${eva.m_Article.nom }" />
-					</tr>
-					<tr>
-						<c:out value="${eva.m_PC.nom + ' ' + eva.m_PC.prenom }" />
-					</tr>
-					<tr>
-						<c:out value="${eva.remarques }" />
-					</tr>
-					<tr>
-						<c:out value="${eva.recommandations }"/>
-					</tr>
-					<tr>
-						<c:out value="${eva.decision }"/>
+						<td>
+							<c:out value="${e.m_Article.nom }" />
+						</td>
+						<td>
+							<c:out value="${e.m_PC.nom } ${e.m_PC.prenom }" />
+						</td>
+						<td>
+							<c:out value="${e.remarques }" />
+						</td>
+						<td>
+							<c:out value="${e.recommandations }"/>
+						</td>
+						<td>
+							<c:out value="${e.decision }"/>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-			<form action="" method="post">
-				<input type="hidden" name="articleId" value="">
-				<input type="hidden" name="articleName" value="">
+			<form action="/_manifestations_scientifiques/R?action=md" method="post">
+				<input type="hidden" name="articleId" value="${id }">
+				<input type="hidden" name="articleName" value="${name }">
 				<input type="submit" name="go" value="Make a decision">
 			</form>
 		<footer></footer>

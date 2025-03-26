@@ -9,9 +9,9 @@ package Models;
 public class Article {
 
 	private String affiliations;
-	private String id;
+	private int id;
 	private String nom;
-	private String Resume;
+	private String resume;
 	private String titrePapiers;
 	public Auteur m_Auteur;
 	
@@ -24,12 +24,12 @@ public class Article {
 		this.affiliations = affiliations;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public void setId(int i) {
+		this.id = i;
 	}
 
 	public String getNom() {
@@ -41,11 +41,11 @@ public class Article {
 	}
 
 	public String getResume() {
-		return Resume;
+		return this.resume;
 	}
 
 	public void setResume(String resume) {
-		Resume = resume;
+		this.resume = resume;
 	}
 
 	public String getTitrePapiers() {
@@ -68,12 +68,12 @@ public class Article {
 		super();
 	}
 
-	public Article(String affiliations, String id, String nom, String resume, String titrePapiers, Auteur m_Auteur) {
+	public Article(String affiliations, int id, String nom, String resume, String titrePapiers, Auteur m_Auteur) {
 		super();
 		this.affiliations = affiliations;
 		this.id = id;
 		this.nom = nom;
-		Resume = resume;
+		this.resume = resume;
 		this.titrePapiers = titrePapiers;
 		this.m_Auteur = m_Auteur;
 	}

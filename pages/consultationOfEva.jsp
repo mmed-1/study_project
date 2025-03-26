@@ -20,6 +20,10 @@
 				font-family: "Poppins", sans-serif;
 			    font-style: normal;
 			}
+			table, td, th {
+				border: solid 2px black;
+				border-collapse: collapse;
+			}
 		</style>
 	</head>
 	<body>
@@ -38,7 +42,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<d:forEach var="article" items=""> <!-- ta hna matensach items -->
+				<d:forEach var="article" items="${articles }"> <!-- ta hna matensach items -->
 					<tr>
 						<td>
 							<d:out value="${article.id }" />
@@ -50,10 +54,10 @@
 							<d:out value="${article.titrePapiers }" />
 						</td>
 						<td>
-							<d:out value="${article.Resume }" />
+							<d:out value="${article.resume }" />
 						</td>
 						<td style="color: red;">
-							<form action="" method="post">   <!-- don't forget about the Servlet -->
+							<form action="/_manifestations_scientifiques/R?action=det" method="post">   <!-- don't forget about the Servlet -->
 								<input type="hidden" name="articleId" value="${article.id }" />
 								<input type="hidden" name="ArticleName" value="${article.nom }" />
 								<input type="submit" name="click" value="see reviews">

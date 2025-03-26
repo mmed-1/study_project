@@ -28,13 +28,13 @@
 		</header>
 		<h1>Make a decision</h1>
 		
-		<form action="" method="post">
+		<form action="/_manifestations_scientifiques/d" method="post">
 		
 			<label for="r1">Enter the Article ID:</label>
-			<input type="text" name="articleId" required="required" id="r1" value="" /> <br>
+			<input type="text" name="articleId" required="required" id="r1" value="${sessionScope.articleId }" /> <br>
 			
 			<label for="r12">Enter the article name:</label>
-			<input type="text" name="articleName" required="required" id="r12" value=""/> <br>
+			<input type="text" name="articleName" required="required" id="r12" value="${sessionScope.articleName }"/> <br>
 			
 			<label>The decision:</label>
 			

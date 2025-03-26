@@ -16,6 +16,8 @@ public class Evaluation {
 
 	public Evaluation(){
 		super();
+		this.m_Article = new Article();
+		this.m_PC = new PC();
 	}
 	
 	
