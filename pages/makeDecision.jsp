@@ -44,10 +44,26 @@
 			<input type="radio" name="decision" required="required" id="r14" value="accepted"/>
 			<label for="r14">Accepted </label>
 			
-			<input type="submit" name="decision" value="Validate" />
+			<input type="submit" name="ok" value="Validate" />
 			<input type="reset" name="reset" value="Reset" />
 			
 		</form>
+		
+		<c:if test="${param.ok != null and param.ok == 'Validate' }">
+			<c:choose>
+				<c:when test="${sessionScope.insert != null and sessionScope.insert == true }">
+					<div>
+						<p style="color: green;">Your decision is successfully registered</p>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div>
+						<p style="color: red;">The Decision exist</p>
+					</div>
+				</c:otherwise>
+			</c:choose>
+			<% session.removeAttribute("insert"); // Clear after display %>
+		</c:if>
 		
 		<footer>
 			<!-- we must have a footer -->

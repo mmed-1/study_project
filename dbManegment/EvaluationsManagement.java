@@ -14,7 +14,7 @@ public class EvaluationsManagement {
 	
 	private final String URL = "jdbc:mysql://127.0.0.1:3306/project";
 	private final String USER = "root";
-	private final String PASSWORD = "YOUR PASSWORD HERE";
+	private final String PASSWORD = "ur password";
 	private final String PILOTE = "com.mysql.cj.jdbc.Driver";
 	
 	//Prepared statement

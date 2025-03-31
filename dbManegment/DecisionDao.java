@@ -9,13 +9,13 @@ public class DecisionDao {
 	
 	private final String URL = "jdbc:mysql://127.0.0.1:3306/project";
 	private final String USER = "root";
-	private final String PASSWD = "YOUR PASSWORD";
+	private final String PASSWD = "ur password";
 	private final String PILOTE = "com.mysql.cj.jdbc.Driver";
 	
 	private final String INSERT_DECISION = """
-			INSERT INTO decision (ArticleID, ConferenceID, EstAccepte)
-			VALUES (?, ?, ?)
-			""";
+												INSERT INTO decision (ArticleID, ConferenceID, EstAccepte)
+												VALUES (?, ?, ?)
+										 """;
 	
 	private Connection connect() throws SQLException {
 		try {

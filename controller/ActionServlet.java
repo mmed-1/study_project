@@ -33,7 +33,7 @@ public class ActionServlet extends HttpServlet {
 		
 		switch(var) {
 			case "da" : //da : display_articles
-				LinkedList<Article> articles = (LinkedList<Article>) sendArticles(1,1);
+				LinkedList<Article> articles = (LinkedList<Article>) sendArticles(2); //request.getSession().getAttribute("confId") arg
 				request.setAttribute("articles", articles);
 				request.getRequestDispatcher("/pages/consultationOfEva.jsp").forward(request, response);
 				break;
@@ -45,13 +45,16 @@ public class ActionServlet extends HttpServlet {
 				request.getRequestDispatcher("/pages/evaDetails.jsp").forward(request, response);
 				break;
 			case "md": //md : make decision
-				HttpSession session2 = request.getSession();
-				session2.setAttribute("articleId", Integer.valueOf(request.getParameter("articleId")));
-				session2.setAttribute("articleName", request.getParameter("articleName"));
+				LinkedList<Article> articless = (LinkedList<Article>) sendArticles(2);
+				request.setAttribute("articles", articless);
+				request.getRequestDispatcher("/pages/articlesEva.jsp").forward(request, response);
+				break;
+			case "fn": //final
+				HttpSession sess = request.getSession();
+				sess.setAttribute("articleId", request.getParameter("articleId"));
+				sess.setAttribute("articleName", request.getParameter("articleName"));
 				response.sendRedirect("/_manifestations_scientifiques/pages/makeDecision.jsp");
 				break;
-				
-				
 		}
 		
 	}
@@ -61,9 +64,9 @@ public class ActionServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public List<Article> sendArticles(int memberID, int confID) {
+	public List<Article> sendArticles(int confID) {
 		ArticlesManagement mgt = new ArticlesManagement();
-		return  mgt.getArticles(memberID, confID);
+		return  mgt.getArticles(confID);
 	}
 	
 	public List<Evaluation> sendEvaluations(int articleID) {

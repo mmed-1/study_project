@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib uri="jakarta.tags.core" prefix="a" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -29,49 +29,38 @@
 	<body>
 		<header></header>
 		
-		<h2>
-			Evaluation details of 
-			<c:out value="${sessionScope.nom }"/>
-		</h2>
+		<h1>The articles evaluated</h1>
+		
 		<table>
 			<thead>
 				<tr>
-					<th>Article name</th> <!-- I think it's ok bc rah id dyal article hna machi sensible -->
-					<th>reviewer name</th>
-					<th>Remarks</th>
-					<th>Recommandations</th>
-					<th>Decision</th>
+					<th>Article id</th>
+					<th>Article name</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="e" items="${eva }">
-					<c:set var="id" value="${e.m_Article.id }"/>
-					<c:set var="name" value="${e.m_Article.nom }"/>
+				<a:forEach var="art" items="${articles }">
 					<tr>
 						<td>
-							<c:out value="${e.m_Article.nom }" />
+							<a:out value="${art.id }"/>
 						</td>
 						<td>
-							<c:out value="${e.m_PC.nom } ${e.m_PC.prenom }" />
+							<a:out value="${art.nom }"/>
 						</td>
 						<td>
-							<c:out value="${e.remarques }" />
-						</td>
-						<td>
-							<c:out value="${e.recommandations }"/>
-						</td>
-						<td>
-							<c:out value="${e.decision }"/>
+							<form action="/_manifestations_scientifiques/R?action=fn" method="post">
+								<input type="hidden" name="articleId" value="${art.id }">
+								<input type="hidden" name="articleName" value="${art.nom }"/>
+								<input type="submit" name="make" value="Make Decision">
+							</form>
 						</td>
 					</tr>
-				</c:forEach>
+				</a:forEach>
 			</tbody>
 		</table>
-			<form action="/_manifestations_scientifiques/R?action=fn" method="post">
-				<input type="hidden" name="articleId" value="${id }">
-				<input type="hidden" name="articleName" value="${name }">
-				<input type="submit" name="go" value="Make a decision">
-			</form>
+		
+		
 		<footer></footer>
 	</body>
 </html>

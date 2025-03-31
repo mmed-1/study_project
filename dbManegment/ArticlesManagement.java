@@ -16,15 +16,14 @@ public class ArticlesManagement {
 	//PREPARED STATEMENTS
 	private final String SELECT_ARTICLES = """ 
 												SELECT a.ArticleID, a.Nom, a.TitrePapiers, a.Resume
-												FROM article a, gerer g, evaluation e
-												WHERE a.ArticleID = e.ArticleID AND g.MemberID = e.Sc_respo_ID 
-													AND  g.MemberID = ? AND g.ConferenceID = ?
+												FROM article a,  soummission s
+												WHERE s.confID = ? and a.ArticleID = s.ArticleID
 										   """;
 	
 	//INFOS
 	private final String URL="jdbc:mysql://localhost:3306/project";
 	private final String USER = "root";
-	private final String PASSWORD = "YOUR PASSWORD";   
+	private final String PASSWORD = "ur password";   
 	
 	
 	public ArticlesManagement() {
@@ -40,12 +39,11 @@ public class ArticlesManagement {
 	}
 
 	
-	public List<Article> getArticles(int memberID, int confID) {
+	public List<Article> getArticles(int confID) {
 		List<Article> articles = new LinkedList<Article>();
 		try(Connection connection = this.connect()) {
 			PreparedStatement pstmt = connection.prepareStatement(SELECT_ARTICLES);
-			pstmt.setInt(1, memberID);
-			pstmt.setInt(2, confID);
+			pstmt.setInt(1, confID);
 			
 			ResultSet result = pstmt.executeQuery();
 			
